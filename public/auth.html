@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FirebaseUI Authentication Example</title>
+  <!-- Firebase App (the core Firebase SDK) -->
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
+  <!-- Firebase Authentication -->
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth-compat.js"></script>
+  <!-- FirebaseUI for authentication -->
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.2/firebase-ui-auth.css" />
+  <script src="https://www.gstatic.com/firebasejs/ui/6.0.2/firebase-ui-auth.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f7f7f7;
+    }
+    #loader {
+      display: block;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="firebaseui-auth-container"></div>
+  <div id="loader">Loading...</div>
+
+  <script>
+    // TODO: Replace with your Firebase project configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyBOZUIb8LKPJv3udiZ92JptEKaKZtdYWSc",
+        authDomain: "checkin-c8c02.firebaseapp.com",
+        projectId: "checkin-c8c02",
+        storageBucket: "checkin-c8c02.appspot.com",
+        messagingSenderId: "462952736399",
+        appId: "1:462952736399:web:1f70b38b279f32adc8b2fa",
+        measurementId: "G-QY8348LGG7"
+    };
+    
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Initialize the FirebaseUI Widget using Firebase
+    var ui = new firebaseui.auth.AuthUI(firebase.auth());
+
+    // FirebaseUI configuration
+    var uiConfig = {
+      callbacks: {
+        signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+          // User successfully signed in.
+          alert('Successfully signed in.');
+          return false;  // Automatically redirects to the success URL.
+        },
+        uiShown: function() {
+          // Hide the loader when the widget is shown
+          document.getElementById('loader').style.display = 'none';
+        }
+      },
+      signInFlow: 'popup',  // Use popup for sign-in
+      signInOptions: [
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+        firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+        firebase.auth.GithubAuthProvider.PROVIDER_ID,
+        firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        firebase.auth.PhoneAuthProvider.PROVIDER_ID
+      ],
+      tosUrl: 'https://example.com/terms',  // Add your terms of service URL
+      privacyPolicyUrl: 'https://example.com/privacy'  // Add your privacy policy URL
+    };
+
+    // Start FirebaseUI authentication
+    ui.start('#firebaseui-auth-container', uiConfig);
+  </script>
+</body>
+</html>
+
