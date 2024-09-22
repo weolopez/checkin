@@ -4,20 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Checkin</title>
- <!-- Firebase App (the core Firebase SDK) -->
- <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
- <!-- Firebase Firestore -->
- <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore-compat.js"></script>
- <!-- Firebase Authentication -->
- <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth-compat.js"></script>
- <!-- Import the custom element -->
-  <script type="module" src="./google-auth.js"></script>
-  <script type="module" src="./location.js"></script>
-  <script type="module" src="./user-profile.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpDg8h68EYDQKlXim3zMliS3Z9_HLaFMM&libraries=places&callback=initMap" async defer></script>
+  <!-- Firebase App (the core Firebase SDK) -->
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
+  <!-- Firebase Firestore -->
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore-compat.js"></script>
+  <!-- Firebase Authentication -->
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth-compat.js"></script>
+  <!-- Import the custom element -->
+  <script type="module" async src="./google-auth.js"></script>
+  <script type="module" async src="./user-profile.js"></script>
+  <script async src="nearby-places.js"></script>
 </head>
 <body>
   <google-auth></google-auth>
   <user-profile-crud></user-profile-crud>
-  <user-location-map></user-location-map>
+  <nearby-places></nearby-places>
 </body>
 </html>
